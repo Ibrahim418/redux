@@ -3,7 +3,7 @@ import React from 'react'
 const TodoReducer = () => {
     return (
         <div>
-            <p>hi</p>
+            <p>hello</p>
         </div>
     )
 }
