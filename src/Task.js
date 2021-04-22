@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import {InputGroup ,FormControl,Button} from 'react-bootstrap'
 import {useDispatch} from 'react-redux'
-import { deleteTodo , editTodo } from './redux/action';
+import { deleteTodo , editTodo , toggletask} from './redux/action';
 
 const Task = ({todo}) => {
   const [editable, setEditable] = useState(false)
   const [name, setName] = useState(todo.name)
+  
 const dispatch = useDispatch();
+
     return (
       <div>
       <div className="row mx-2 align-items-center">
@@ -25,8 +27,8 @@ const dispatch = useDispatch();
           </div>
           <button className="btn btn-primary m-2"
               onClick={() => {
-                  dispatch(editTodo({...todo,name: name}))
                   if(editable) {
+                      dispatch(editTodo({...todo,name: name}))
                    setName(todo.name);   
                   }
                   setEditable(!editable);
@@ -38,8 +40,11 @@ const dispatch = useDispatch();
               onClick={() => dispatch(deleteTodo(todo.id))}>Delete</button>
               
 
-              <input type="checkbox" name="button" id="button"/>
-<button className="btn btn-danger m-2">Done</button>
+              
+<button style={{textDecoration: todo.isDone? "lineThrought":"none"}} 
+className="btn btn-danger m-2" onClick={()=>dispatch(toggletask(todo.id))}>
+    {todo.done ? 'Done' : 'undone'}
+    </button>
 
               
           

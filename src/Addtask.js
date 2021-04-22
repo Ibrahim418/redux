@@ -10,25 +10,27 @@ import {v1 as uuid} from 'uuid'
 
  const dispatch = useDispatch()
 
-let [name,setName]=useState();
+let [name,setName]=useState('');
+const handleAdd = (e) => {
+  
+  dispatch(AddTodo( 
+    {
+      id :uuid(),
+     name : name
+    }))
+    setName('')
+}
+
     return (
         <div >
-    <InputGroup className="mb-3 Button" type="text" value={name} onChange={(e)=>setName(e.target.value)}>
+    <InputGroup className="mb-3 Button" type="text"  onChange={(e)=>setName(e.target.value)}>
     <FormControl
       placeholder=""
       aria-label=""
       aria-describedby="basic-addon2"
+      value={name}
     />
-      <Button  onClick={ ()=> {
-        dispatch(AddTodo( 
-          {
-            id :uuid(),
-           name : name
-          }))
-
-          setName('')
-
-         }} >
+      <Button  onClick={handleAdd} >
            +
          </Button>
   </InputGroup>
