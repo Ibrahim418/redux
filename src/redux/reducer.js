@@ -23,12 +23,12 @@ export let reducer = (state = initstate, action )=>{
             let index = -1;
             for (let i = 0; i < newTodos.length; i++) {
                 index++;
-                if (newTodos[i].id == action.payload.id) {
+                if (newTodos[i].id === action.payload.id) {
                     break;
                 }
 
             }
-            if (index != -1) {
+            if (index !== -1) {
                 newTodos[index] = action.payload;
                 return  {
                  ...state,
@@ -40,7 +40,11 @@ export let reducer = (state = initstate, action )=>{
             // return state.map(el=> el.id===action.payload? {...el,isDone:!el.isDone}:el)
             return {...state, todos:state.todos.map(el=> el.id===action.payload? {...el,done:!el.done}:el)}
 
-
+            case FILTER_TODO:
+                return {
+                    ...state,
+                    filter:action.payload
+                }
 
    
     }
