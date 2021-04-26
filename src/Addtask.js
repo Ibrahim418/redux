@@ -16,7 +16,8 @@ const handleAdd = (e) => {
   dispatch(AddTodo( 
     {
       id :uuid(),
-     name : name
+     name : name,
+     done:true,
     }))
     setName('')
 }
